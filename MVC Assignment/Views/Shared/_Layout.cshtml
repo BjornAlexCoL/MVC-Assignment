@@ -6,8 +6,18 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
+    <header>
+        <h3>Logo</h3>
+        <nav><ol>
+        <li><a asp-controller="home" asp-action="index">Home</a></li>
+        <li><a asp-controller="home" asp-action="projects">Projects</a></li>
+        <li><a asp-controller="home" asp-action="Contact">Contact</a></li>
+        <li><a asp-controller="home" asp-action="about">About</a></li>
+</ol></nav>
+    </header>
     <div>
         @RenderBody()
     </div>
+    <footer>&copy;Björn Larsson @DateTime.Now</footer>
 </body>
 </html>
