@@ -2,3 +2,10 @@
     ViewData["Title"] = "Doctor";
 }
 <h1>Doctor</h1>
+@if (ViewBag.fever!=null){
+    <h4 class="fever">@ViewBag.fever</h4>
+    }
+<form asp-action="Index" method="post">
+    <label>Please input your temperature to check if you got fever. When done press enter! </label>
+    <input type="number" name="temp" id="temp" requiredValue/>
+</form>
