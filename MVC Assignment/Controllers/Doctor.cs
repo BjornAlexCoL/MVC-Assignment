@@ -18,7 +18,7 @@ namespace MVC_Assignment.Controllers
         [HttpPost]
         public IActionResult Index(float temp,string tempScale)
         {
-            ViewBag.fever = FeverCheck.GetFeverResponse(temp, tempScale)+tempScale;
+            ViewBag.fever = FeverCheck.GetFeverResponse(temp, tempScale);
         return View();
         }
                
