@@ -7,10 +7,11 @@
     }
 <form asp-action="Index" method="post">
     <label>What Temperature scale do you want to use?</label>
+    <br />
+    <input type="radio" name="tempScale" id="TempScale" value="Celsius" checked/>
     <label>Celsius</label>
-    <input type="radio" name="name" value="Celsius" checked />
+    <input type="radio" name="tempScale" id="tempScale" value="Farenheit" />
     <label>Farenheit</label>
-    <input type="radio" name="name" value="Farenheit" />
     <br />
     <label>Please input your temperature to check if you got fever. When done press enter! </label>
     <input type="number" name="temp" id="temp" requiredValue/>

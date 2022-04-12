@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MVC_Assignment.Models;
 
 namespace MVC_Assignment.Controllers
 {
@@ -15,17 +16,9 @@ namespace MVC_Assignment.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(float temp)
+        public IActionResult Index(float temp,string tempScale)
         {
-            ViewBag.fever = "You look healty. Time to work!";
-            if (temp >= 37)
-            {
-                ViewBag.fever = "I, as a computer, would say you got some fever";
-            }
-            if (temp < 35)
-            {
-                ViewBag.fever = "I, as a computer, would say you are more or less dead";
-            }
+            ViewBag.fever = FeverCheck.GetFeverResponse(temp, tempScale)+tempScale;
         return View();
         }
                
