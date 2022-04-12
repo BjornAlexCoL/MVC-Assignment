@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Number Guessing";
+}
+<h1>Number Guessing</h1>
+@if (ViewBag.response != null)
+{
+    <h4 class="guessResponse">@ViewBag.response</h4>
+}
+else
+{
+    <h4 class="instructions">I am picking a integer number between 1 - 100 and you are supposed to guess it</h4>
+}
+<form asp-action="Index" method="post">
+    <label>Please enter an integer number between 1-100! When done press enter.! :</label>
+    <input type="number" name="guess" id="guess" min="1" max="100" requiredValue />
+</form>
