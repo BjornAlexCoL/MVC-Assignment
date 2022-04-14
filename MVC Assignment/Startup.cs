@@ -16,6 +16,14 @@ namespace MVC_Assignment
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(3);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddMvc();
         }
 
@@ -29,11 +37,21 @@ namespace MVC_Assignment
             app.UseStaticFiles();
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(name: "Doctor",
-pattern: "Doctor/FeverCheck",
-defaults: new { controller = "Doctor", action = "index" });
+                endpoints.MapControllerRoute(
+                    name: "Doctor",
+                    pattern: "Doctor/FeverCheck",
+                    defaults: new { controller = "Doctor", action = "index" });
+                
+                endpoints.MapControllerRoute(
+                    name: "GuessingGame",
+                    pattern: "/GuessingCame", //comper to uri/url
+                    defaults: new { controller = "NumberGuessing", action = "index" }
+                    );
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
