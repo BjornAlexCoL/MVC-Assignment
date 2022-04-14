@@ -10,7 +10,39 @@ else
 {
     <h4 class="instructions">I am picking a integer number between 1 - 100 and you are supposed to guess it</h4>
 }
-<form asp-action="Index" method="post">
-    <label>Please enter an integer number between 1-100! When done press enter.! :</label>
-    <input type="number" name="guess" id="guess" min="1" max="100" tabindex="0" requiredValue />
-</form>
+@if (ViewBag.addToHighScore)
+{
+    <form asp-action="AddToHighScore" method="post">
+        <h2>Congratulations! Your result is good enough to be on the highscore list</h2>
+        <br />
+        <label> Please enter your name. Press enter when done:</label>
+        <input type="Text" name="name" id="name" requiredValue />
+    </form>
+}
+else
+{
+    <form asp-action="Index" method="post">
+        <label>Please enter an integer number between 1-100! When done press enter.! :</label>
+        <input type="number" name="guess" id="guess" min="1" max="100" tabindex="0" requiredValue />
+    </form>
+}
+
+<h2>Hall of fame</h2>
+<ul>
+    @if (ViewBag.highScores != null && ViewBag.highScores is string)
+    {
+        Array highScores = (ViewBag.highScores as string).Split('\n');
+
+        
+        foreach (string score in highScores)
+        {
+            <li>
+                <p>@score</p>
+            </li>
+        }
+    }
+    else
+    {
+        <li><p>No High Scores Yet!</p></li>
+    }
+</ul>
